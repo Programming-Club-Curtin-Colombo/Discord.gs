@@ -1,6 +1,6 @@
 /**
  * Manual test for Discord.gs
- * 
+ *
  * Replace WEBHOOK_URL with a real Discord webhook URL to test.
  */
 function test_sendSimpleMessage() {
@@ -9,7 +9,7 @@ function test_sendSimpleMessage() {
     Logger.log("Please provide a real webhook URL to test.");
     return;
   }
-  
+
   send(WEBHOOK_URL, "Test message from Discord.gs");
 }
 
@@ -25,10 +25,10 @@ function test_sendEmbed() {
     description: "This is a test embed from Discord.gs",
     color: Utils_hexToDecimal("#00FF00"),
     footer: {
-      text: "Sent via Google Apps Script"
-    }
+      text: "Sent via Google Apps Script",
+    },
   };
-  
+
   sendEmbed(WEBHOOK_URL, embed, { content: "Header text" });
 }
 

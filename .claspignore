@@ -1,0 +1,27 @@
+# Ignore all files
+**/**
+
+# Exceptions (Files to push)
+!appsscript.json
+!*.gs
+!**/*.gs
+!*.html
+!**/*.html
+
+# Specific ignores for the exceptions
+.claspignore
+.clasp.json
+node_modules/**
+package.json
+package-lock.json
+eslint.config.js
+README.md
+ARCHITECTURE.md
+API.md
+CONTRIBUTING.md
+SECURITY.md
+.governance.json
+.editorconfig
+.prettierignore
+jsconfig.json
+.github/**

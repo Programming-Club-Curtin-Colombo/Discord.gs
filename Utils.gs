@@ -1,6 +1,6 @@
 /**
  * Converts a hex color string to a Discord-compatible decimal integer.
- * 
+ *
  * @param {string} hex - The hex color string (e.g., "#FF0000" or "FF0000").
  * @returns {number} The decimal representation of the color.
  */

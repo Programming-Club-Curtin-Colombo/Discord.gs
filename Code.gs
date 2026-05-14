@@ -1,12 +1,13 @@
 /**
  * Sends a message to Discord.
- * 
+ *
  * @param {string} webhookUrl - The Discord webhook URL.
  * @param {string|Object} options - Either the message content string or an options object.
  * @returns {void}
  */
 function send(webhookUrl, options) {
-  const messageOptions = typeof options === "string" ? { content: options } : options;
+  const messageOptions =
+    typeof options === "string" ? { content: options } : options;
 
   Services_validateOptions(messageOptions);
   return Services_sendDiscordMessage(webhookUrl, messageOptions);
@@ -14,7 +15,7 @@ function send(webhookUrl, options) {
 
 /**
  * Sends a simple text message to Discord.
- * 
+ *
  * @param {string} webhookUrl - The Discord webhook URL.
  * @param {string} content - The message content.
  * @returns {void}
@@ -25,7 +26,7 @@ function sendMessage(webhookUrl, content) {
 
 /**
  * Sends an embed to Discord.
- * 
+ *
  * @param {string} webhookUrl - The Discord webhook URL.
  * @param {Object} embed - The Discord embed object.
  * @param {Object} [options] - Additional message options (username, avatar_url, content).
@@ -34,7 +35,7 @@ function sendMessage(webhookUrl, content) {
 function sendEmbed(webhookUrl, embed, options = {}) {
   const messageOptions = {
     ...options,
-    embeds: [embed]
+    embeds: [embed],
   };
   return send(webhookUrl, messageOptions);
 }
@@ -42,7 +43,7 @@ function sendEmbed(webhookUrl, embed, options = {}) {
 /**
  * Sends a message to the announcements channel.
  * Uses the 'announcements' script property for the webhook URL.
- * 
+ *
  * @param {string|Object} options - Message content or options object.
  */
 function sendAnnouncement(options) {
@@ -52,7 +53,7 @@ function sendAnnouncement(options) {
 /**
  * Sends a message to the moderator channel.
  * Uses the 'moderator-text' script property for the webhook URL.
- * 
+ *
  * @param {string|Object} options - Message content or options object.
  */
 function sendModeratorMessage(options) {

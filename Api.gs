@@ -1,6 +1,6 @@
 /**
  * Posts a payload to a Discord webhook.
- * 
+ *
  * @param {string} webhookUrl - The Discord webhook URL.
  * @param {Object} payload - The JSON payload to send.
  * @returns {GoogleAppsScript.URL_Fetch.HTTPResponse} The response from Discord.
@@ -15,14 +15,16 @@ function Api_postToDiscord(webhookUrl, payload) {
     method: "post",
     contentType: "application/json",
     payload: JSON.stringify(payload),
-    muteHttpExceptions: true
+    muteHttpExceptions: true,
   };
 
   const response = UrlFetchApp.fetch(webhookUrl, options);
   const responseCode = response.getResponseCode();
 
   if (responseCode < 200 || responseCode >= 300) {
-    throw new Error(`Discord API error (${responseCode}): ${response.getContentText()}`);
+    throw new Error(
+      `Discord API error (${responseCode}): ${response.getContentText()}`,
+    );
   }
 
   return response;
