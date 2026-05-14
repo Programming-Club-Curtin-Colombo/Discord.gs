@@ -1,8 +1,8 @@
 {
-  "name": "google-script-template",
+  "name": "discord-gs",
   "version": "1.0.0",
   "private": true,
-  "description": "Google Apps Script template with linting, formatting, and CI governance enforcement",
+  "description": "A professional Discord Webhook library for Google Apps Script.",
   "scripts": {
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",

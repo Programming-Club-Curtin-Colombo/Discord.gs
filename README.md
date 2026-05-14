@@ -1,15 +1,16 @@
-# Google Script Template
+# Discord.gs
 
-A professional, clean, and highly modular template for Google Apps Script projects.
+A professional, clean, and highly modular Discord Webhook library for Google Apps Script.
 
 ## Overview
-This repository provides a foundational structure for building robust Google Apps Script applications (Web Apps, API integrations, or Add-ons) with modern development practices including linting, formatting, and local deployment support.
+`Discord.gs` allows you to easily send messages and embeds to Discord from your Google Apps Script projects. It follows a strict architectural standard to ensure maintainability and scalability.
 
 ## Features
-- **Local Development:** Sync with Google Apps Script using `clasp`.
-- **Code Quality:** Pre-configured ESLint and Prettier for maintaining high standards.
-- **Documentation:** Built-in templates for Architecture, API, and Contribution guides.
-- **Governance:** Standardized issue templates and security policies.
+- **Simple API:** Send messages with a single function call.
+- **Embed Support:** Full support for Discord embeds.
+- **Default Branding:** Automatically uses "Google Script Bot" and Google avatar if not specified.
+- **Modular Design:** Built with a clean separation of concerns (Code, Services, Api, Utils).
+- **Type Safety:** Includes JSDoc for better IDE support.
 
 ## Getting Started
 1. **Clone the repository:**
