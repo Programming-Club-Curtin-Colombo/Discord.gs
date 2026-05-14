@@ -31,7 +31,7 @@ function Api_postToDiscord(webhookUrl, payload) {
     if (responseCode === 429) {
       const responseText = response.getContentText();
       let waitTimeMs = 1000; // Default 1s
-      
+
       try {
         const responseData = JSON.parse(responseText);
         // Discord retry_after is in seconds
@@ -44,14 +44,20 @@ function Api_postToDiscord(webhookUrl, payload) {
         }
       }
 
-      Logger.log(`Discord Rate Limited (429). Attempt ${attempt + 1}/${CONFIG.MAX_RETRIES}. Waiting ${waitTimeMs}ms...`);
+      Logger.log(
+        `Discord Rate Limited (429). Attempt ${attempt + 1}/${CONFIG.MAX_RETRIES}. Waiting ${waitTimeMs}ms...`,
+      );
       Utilities.sleep(waitTimeMs);
       continue;
     }
 
     // Other errors
-    throw new Error(`Discord API error (${responseCode}): ${response.getContentText()}`);
+    throw new Error(
+      `Discord API error (${responseCode}): ${response.getContentText()}`,
+    );
   }
 
-  throw new Error(`Failed to send message to Discord after ${CONFIG.MAX_RETRIES} attempts due to rate limiting.`);
+  throw new Error(
+    `Failed to send message to Discord after ${CONFIG.MAX_RETRIES} attempts due to rate limiting.`,
+  );
 }
