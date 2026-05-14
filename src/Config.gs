@@ -6,4 +6,5 @@ const CONFIG = Object.freeze({
     ANNOUNCEMENTS: "announcements",
     MODERATOR: "moderator-text",
   },
+  MAX_RETRIES: 3,
 });
