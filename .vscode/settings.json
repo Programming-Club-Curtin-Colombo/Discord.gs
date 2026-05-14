@@ -1,0 +1,16 @@
+{
+  "files.associations": {
+    "*.gs": "javascript"
+  },
+
+  "editor.formatOnSave": true,
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit"
+  },
+
+  "eslint.validate": ["javascript", "javascriptreact"]
+}

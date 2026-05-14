@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "target": "ES2021",
+    "module": "CommonJS",
+    "lib": ["es2021", "dom"],
+    "checkJs": true,
+    "strict": false
+  },
+  "include": ["**/*.js", "**/*.gs"],
+  "exclude": ["node_modules"]
+}

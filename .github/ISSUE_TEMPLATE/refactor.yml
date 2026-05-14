@@ -1,0 +1,23 @@
+name: Code Refactor / Technical Debt
+description: Suggest code quality improvements or architectural refactoring.
+labels: ["refactor", "tech-debt"]
+body:
+  - type: textarea
+    id: current-state
+    attributes:
+      label: Current Implementation
+      description: What part of the code needs refactoring?
+    validations:
+      required: true
+  - type: textarea
+    id: suggestion
+    attributes:
+      label: Suggested Refactor
+      description: How should the code be improved?
+    validations:
+      required: true
+  - type: textarea
+    id: benefits
+    attributes:
+      label: Expected Benefits
+      description: e.g. Better performance, readability, or testability.

@@ -1,0 +1,21 @@
+name: Support / Question
+description: Ask a question or request support for using this template.
+labels: ["question"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ### Before you ask...
+        Please check the [README.md](../README.md) and existing issues to see if your question has already been answered.
+  - type: textarea
+    id: question
+    attributes:
+      label: Your Question
+      description: What do you need help with?
+    validations:
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: Context
+      description: Provide any background information that might help us answer your question.

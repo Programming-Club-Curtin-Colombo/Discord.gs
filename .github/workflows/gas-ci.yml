@@ -1,0 +1,64 @@
+name: GAS Strict Architecture CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  validate:
+    name: Lint + Architecture Enforcement
+    runs-on: ubuntu-latest
+
+    steps:
+      # =========================
+      # Checkout
+      # =========================
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # =========================
+      # Setup Node
+      # =========================
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      # =========================
+      # CACHE NODE MODULES (requested)
+      # =========================
+      - name: Cache node modules
+        uses: actions/cache@v4
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
+
+      # =========================
+      # Install dependencies
+      # =========================
+      - name: Install dependencies
+        run: npm install
+
+      # =========================
+      # Lint (STRICT MODE)
+      # =========================
+      - name: Run ESLint
+        run: npm run ci:lint
+
+      # =========================
+      # Format check (FAIL ON ERROR)
+      # =========================
+      - name: Check formatting
+        run: npm run format:check
+
+      # =========================
+      # Run Tests
+      # =========================
+      - name: Run Tests
+        run: npm test
+
+      # =========================
+      # Final gate
+      # =========================
+      - name: Architecture validation complete
+        run: echo "All GAS architecture rules passed."

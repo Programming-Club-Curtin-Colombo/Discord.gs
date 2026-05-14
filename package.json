@@ -1,0 +1,23 @@
+{
+  "name": "google-script-template",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Google Apps Script template with linting, formatting, and CI governance enforcement",
+  "scripts": {
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier . --write",
+    "format:check": "prettier . --check",
+    "ci:lint": "eslint .",
+    "test": "echo \"Info: No tests implemented yet. Please add tests to the tests/ directory.\" && exit 0"
+  },
+  "devDependencies": {
+    "@types/google-apps-script": "^1.0.83",
+    "eslint": "^9.0.0",
+    "prettier": "^3.0.0"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "packageManager": "npm@10"
+}

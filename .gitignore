@@ -1,0 +1,14 @@
+# Dependencies
+node_modules/
+
+# Environment / Secret
+.env
+.clasp.json
+
+# Build / Output
+dist/
+coverage/
+
+# OS Files
+.DS_Store
+Thumbs.db

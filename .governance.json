@@ -1,0 +1,21 @@
+{
+  "governanceVersion": "1.0.0",
+  "emailValidation": {
+    "enabled": true,
+    "allowedEmailDomains": ["student.curtin.edu.au", "*.curtin.edu.au"]
+  },
+  "roles": {
+    "maintainers": ["repo-owner-username"],
+    "students": {
+      "requireDomainCheck": true
+    },
+    "external": {
+      "whitelistUsers": ["trusted-external-1"],
+      "requireApproval": true,
+      "requireDomainCheck": false
+    }
+  },
+  "debug": {
+    "dryRun": false
+  }
+}

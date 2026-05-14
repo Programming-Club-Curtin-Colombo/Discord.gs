@@ -1,0 +1,24 @@
+name: Documentation Improvement
+description: Suggest improvements or report errors in the documentation.
+labels: ["documentation"]
+body:
+  - type: textarea
+    id: current-docs
+    attributes:
+      label: Current Documentation
+      description: Which part of the documentation needs improvement?
+      placeholder: Link to file or description of the section...
+    validations:
+      required: true
+  - type: textarea
+    id: suggested-changes
+    attributes:
+      label: Suggested Changes
+      description: What should be changed or added?
+    validations:
+      required: true
+  - type: textarea
+    id: rationale
+    attributes:
+      label: Rationale
+      description: Why is this change necessary?
