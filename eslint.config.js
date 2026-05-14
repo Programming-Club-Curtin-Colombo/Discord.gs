@@ -64,10 +64,25 @@ module.exports = [
       "no-restricted-syntax": [
         "error",
         {
+          // Allow standard GAS entry points OR library public functions (send*)
           selector:
-            "FunctionDeclaration[id.name=/^(?!doGet|doPost|onOpen|onEdit)/]",
+            "FunctionDeclaration[id.name=/^(?!doGet|doPost|onOpen|onEdit|send)/]",
           message:
-            "Code.gs must only contain entry points (doGet, doPost, etc.).",
+            "Code.gs must only contain entry points (doGet, doPost, etc.) or library public functions (send*).",
+        },
+      ],
+    },
+  },
+  {
+    files: ["tests/**/*.gs"],
+    rules: {
+      "no-restricted-syntax": [
+        "error",
+        {
+          selector:
+            "FunctionDeclaration[id.name=/^(?!test_|Services_|Utils_|Api_)/]",
+          message:
+            "Test functions must be prefixed with test_, Services_, Utils_, or Api_.",
         },
       ],
     },

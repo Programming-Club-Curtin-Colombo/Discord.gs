@@ -6,13 +6,7 @@
  * @returns {void}
  */
 function send(webhookUrl, options) {
-  let messageOptions = {};
-  
-  if (typeof options === "string") {
-    messageOptions.content = options;
-  } else {
-    messageOptions = options;
-  }
+  const messageOptions = typeof options === "string" ? { content: options } : options;
 
   Services_validateOptions(messageOptions);
   return Services_sendDiscordMessage(webhookUrl, messageOptions);

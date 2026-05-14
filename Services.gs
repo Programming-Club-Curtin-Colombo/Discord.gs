@@ -45,7 +45,7 @@ function Services_sendByProperty(propertyKey, options) {
     throw new Error(`Webhook URL not found in script property: ${propertyKey}`);
   }
 
-  let messageOptions = typeof options === "string" ? { content: options } : options;
+  const messageOptions = typeof options === "string" ? { content: options } : options;
   Services_validateOptions(messageOptions);
   return Services_sendDiscordMessage(webhookUrl, messageOptions);
 }
