@@ -81,8 +81,8 @@ function Api_send(webhookUrl, options) {
   const messageOptions =
     typeof options === "string" ? { content: options } : options;
 
-  Services_validateOptions(messageOptions);
-  return Services_sendDiscordMessage(webhookUrl, messageOptions);
+  Services.validateOptions(messageOptions);
+  return Services.sendDiscordMessage(webhookUrl, messageOptions);
 }
 
 /**
@@ -119,7 +119,7 @@ function Api_sendEmbed(webhookUrl, embed, options = {}) {
  * @param {string|Object} options - Message content or options object.
  */
 function Api_sendAnnouncement(options) {
-  return Services_sendByProperty(CONFIG.PROPERTY_KEYS.ANNOUNCEMENTS, options);
+  return Services.sendByProperty(CONFIG.PROPERTY_KEYS.ANNOUNCEMENTS, options);
 }
 
 /**
@@ -129,5 +129,5 @@ function Api_sendAnnouncement(options) {
  * @param {string|Object} options - Message content or options object.
  */
 function Api_sendModeratorMessage(options) {
-  return Services_sendByProperty(CONFIG.PROPERTY_KEYS.MODERATOR, options);
+  return Services.sendByProperty(CONFIG.PROPERTY_KEYS.MODERATOR, options);
 }

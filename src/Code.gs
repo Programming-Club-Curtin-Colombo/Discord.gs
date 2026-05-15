@@ -1,9 +1,12 @@
 /**
- * Discord.gs Entry Points
+ * Code.gs
+ * Web entry points for the Discord.gs library.
+ * Only doGet and doPost should reside here.
  */
 
 /**
  * Handles GET requests (Optional)
+ * @param {GoogleAppsScript.Events.DoGet} e - Event object.
  */
 function doGet(e) {
   // Add logic if needed
@@ -11,14 +14,8 @@ function doGet(e) {
 
 /**
  * Handles POST requests (Optional)
+ * @param {GoogleAppsScript.Events.DoPost} e - Event object.
  */
 function doPost(e) {
-  // Add logic if needed
-}
-
-/**
- * Executes when the script is opened (e.g. from a Sheet)
- */
-function onOpen(e) {
   // Add logic if needed
 }
