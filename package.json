@@ -9,8 +9,9 @@
     "format": "prettier . --write",
     "format:check": "prettier . --check",
     "ci:lint": "eslint .",
-    "test:local": "node src/tests/NodeTest.js",
-    "test": "echo \"Info: No tests implemented yet. Please add tests to the tests/ directory.\" && exit 0"
+    "test": "node src/tests/NodeTests.js",
+    "test:node": "node src/tests/NodeTests.js",
+    "test:gas": "echo 'Run GasTests.gs manually in the Apps Script Editor.' && exit 0"
   },
   "devDependencies": {
     "@types/google-apps-script": "^1.0.83",
