@@ -47,6 +47,14 @@ function Api_postToDiscord(webhookUrl, payload) {
       Logger.log(
         `Discord Rate Limited (429). Attempt ${attempt + 1}/${CONFIG.MAX_RETRIES}. Waiting ${waitTimeMs}ms...`,
       );
+
+      // GAS has a limit on Utilities.sleep (usually 300,000ms / 5 mins)
+      if (waitTimeMs > 300000) {
+        throw new Error(
+          `Discord rate limit wait time (${waitTimeMs}ms) exceeds Google Apps Script limits. Please try again later.`,
+        );
+      }
+
       Utilities.sleep(waitTimeMs);
       continue;
     }

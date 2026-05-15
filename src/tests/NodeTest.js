@@ -40,7 +40,14 @@ const context = {
         return {
           getResponseCode: () => res.status,
           getContentText: () => res.text(),
-          getAllHeaders: () => res.headers.raw(),
+          getAllHeaders: () => {
+            // GAS returns a flat object with string values, Node fetch returns arrays
+            const headers = {};
+            res.headers.forEach((value, name) => {
+              headers[name] = value;
+            });
+            return headers;
+          },
         };
       } else {
         console.log(">>> MOCK MODE: Logging payload instead of sending.");
