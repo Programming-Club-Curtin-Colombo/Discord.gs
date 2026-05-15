@@ -21,17 +21,38 @@ const context = {
   },
   UrlFetchApp: {
     fetch: (url, options) => {
-      console.log("\n>>> OUTGOING REQUEST TO DISCORD");
-      console.log(`URL: ${url}`);
-      console.log(`Payload: ${options.payload}`);
-      console.log("<<< END REQUEST\n");
+      console.log(`\n[UrlFetchApp] Sending request to: ${url}`);
+      
+      const isMock = url.includes("discord.com/api/webhooks/mock");
+      
+      if (!isMock) {
+        const fetch = require("sync-fetch");
+        const res = fetch(url, {
+          method: options.method || "post",
+          headers: {
+            "Content-Type": options.contentType || "application/json",
+          },
+          body: options.payload,
+        });
 
-      // Mock success response (204 No Content is standard for webhooks)
-      return {
-        getResponseCode: () => 204,
-        getContentText: () => "",
-        getAllHeaders: () => ({}),
-      };
+        console.log(`[UrlFetchApp] Status: ${res.status}`);
+        
+        return {
+          getResponseCode: () => res.status,
+          getContentText: () => res.text(),
+          getAllHeaders: () => res.headers.raw(),
+        };
+      } else {
+        console.log(">>> MOCK MODE: Logging payload instead of sending.");
+        console.log(`Payload: ${options.payload}`);
+        console.log("<<< END MOCK MODE\n");
+
+        return {
+          getResponseCode: () => 204,
+          getContentText: () => "",
+          getAllHeaders: () => ({}),
+        };
+      }
     },
   },
   PropertiesService: {

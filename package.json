@@ -16,7 +16,8 @@
     "@types/google-apps-script": "^1.0.83",
     "dotenv": "^17.4.2",
     "eslint": "^9.0.0",
-    "prettier": "^3.0.0"
+    "prettier": "^3.0.0",
+    "sync-fetch": "^0.6.0"
   },
   "engines": {
     "node": ">=18"
