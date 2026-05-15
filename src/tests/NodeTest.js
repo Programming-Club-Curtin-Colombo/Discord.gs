@@ -98,24 +98,35 @@ try {
 // 4. Execution Tests
 console.log("=== Discord.gs Node.js Test Suite ===");
 
-const testWebhook =
+// Inject test variables into context
+context.testWebhook =
   process.env.DISCORD_WEBHOOK_URL || "https://discord.com/api/webhooks/mock";
+context.process = { env: process.env };
 
-console.log("1. Testing: Api_send(string)");
-context.Api_send(testWebhook, "Test message from Node.js environment.");
+vm.runInContext(
+  `
+  console.log("1. Testing: send(string)");
+  send(testWebhook, "Test message from Node.js environment.");
 
-console.log("2. Testing: Api_sendEmbed()");
-context.Api_sendEmbed(testWebhook, {
-  title: "Formatting Check",
-  description: "This embed is being verified via the Node.js test runner.",
-  color: context.Utils_hexToDecimal("#3498db"),
-  fields: [{ name: "Environment", value: "Node.js", inline: true }],
-  footer: { text: "Discord.gs Local Test" },
-});
+  console.log("2. Testing: send(embed)");
+  send(testWebhook, {
+    embeds: [
+      {
+        title: "Formatting Check",
+        description: "This embed is being verified via the Node.js test runner.",
+        color: Utils.getRandomColor(),
+        fields: [{ name: "Environment", value: "Node.js", inline: true }],
+        footer: { text: "Discord.gs Local Test" },
+      },
+    ],
+  });
 
-if (process.env.ANNOUNCEMENTS_WEBHOOK_URL) {
-  console.log("3. Testing: Api_sendAnnouncement()");
-  context.Api_sendAnnouncement("Property-based webhook test successful.");
-}
+  if (process.env.ANNOUNCEMENTS_WEBHOOK_URL) {
+    console.log("3. Testing: sentToAnnouncement()");
+    sentToAnnouncement("Property-based webhook test successful.");
+  }
+`,
+  context,
+);
 
 console.log("=== Test Suite Finished ===");

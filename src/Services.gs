@@ -45,9 +45,10 @@ const Services = (() => {
           const responseData = JSON.parse(responseText);
           waitTimeMs = (responseData.retry_after || 1) * 1000;
         } catch (e) {
-          const retryAfterHeader = response.getAllHeaders()["Retry-After"];
-          if (retryAfterHeader) {
-            waitTimeMs = parseInt(retryAfterHeader) * 1000;
+          const headers = response.getAllHeaders();
+          const retryAfter = headers["Retry-After"] || headers["retry-after"];
+          if (retryAfter) {
+            waitTimeMs = parseInt(retryAfter) * 1000;
           }
         }
 
