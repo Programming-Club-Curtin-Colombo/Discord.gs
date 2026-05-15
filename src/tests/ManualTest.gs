@@ -42,13 +42,14 @@ function test_normalMessage() {
  * 2. Message with attachment image
  */
 function test_messageWithImage() {
-  const imageUrl = "https://www.gstatic.com/images/branding/googleg/1x/googleg_standard_color_128dp.png";
+  const imageUrl =
+    "https://www.gstatic.com/images/branding/googleg/1x/googleg_standard_color_128dp.png";
   const imageBlob = UrlFetchApp.fetch(imageUrl).getBlob();
   imageBlob.setName("google_logo.png");
 
   runTestScenario("Message with Image Attachment", {
     content: "Here is a logo for you!",
-    files: [imageBlob]
+    files: [imageBlob],
   });
 }
 
@@ -56,11 +57,15 @@ function test_messageWithImage() {
  * 3. Attachment with txt
  */
 function test_messageWithTextFile() {
-  const textBlob = Utilities.newBlob("Hello, this is a text file content.", "text/plain", "hello.txt");
+  const textBlob = Utilities.newBlob(
+    "Hello, this is a text file content.",
+    "text/plain",
+    "hello.txt",
+  );
 
   runTestScenario("Message with Text File", {
     content: "Sending a text file as attachment.",
-    files: [textBlob]
+    files: [textBlob],
   });
 }
 
@@ -71,12 +76,12 @@ function test_messageWithOneEmbed() {
   const embed = {
     title: "Single Embed Test",
     description: "This is a test with a message AND an embed.",
-    color: Utils.getRandomColor()
+    color: Utils.getRandomColor(),
   };
 
   runTestScenario("Message with One Embed", {
     content: "Look at this embed:",
-    embeds: [embed]
+    embeds: [embed],
   });
 }
 
@@ -87,11 +92,11 @@ function test_embedAlone() {
   const embed = {
     title: "Lonely Embed",
     description: "I have no top-level message content.",
-    color: Utils.getRandomColor()
+    color: Utils.getRandomColor(),
   };
 
   runTestScenario("Embed Alone", {
-    embeds: [embed]
+    embeds: [embed],
   });
 }
 
@@ -103,18 +108,18 @@ function test_twoEmbeds() {
     {
       title: "Embed One",
       description: "First part of the message.",
-      color: Utils.getRandomColor()
+      color: Utils.getRandomColor(),
     },
     {
       title: "Embed Two",
       description: "Second part of the message.",
-      color: Utils.getRandomColor()
-    }
+      color: Utils.getRandomColor(),
+    },
   ];
 
   runTestScenario("Two Embeds", {
     content: "Double Trouble:",
-    embeds: embeds
+    embeds: embeds,
   });
 }
 
@@ -122,16 +127,20 @@ function test_twoEmbeds() {
  * 7. Embed with attachment
  */
 function test_embedWithAttachment() {
-  const textBlob = Utilities.newBlob("Internal logs...", "text/plain", "logs.txt");
+  const textBlob = Utilities.newBlob(
+    "Internal logs...",
+    "text/plain",
+    "logs.txt",
+  );
   const embed = {
     title: "System Log Export",
     description: "Please find the attached log file below.",
-    color: Utils.getRandomColor()
+    color: Utils.getRandomColor(),
   };
 
   runTestScenario("Embed with Attachment", {
     embeds: [embed],
-    files: [textBlob]
+    files: [textBlob],
   });
 }
 
@@ -144,37 +153,38 @@ function test_advancedEmbedFields() {
     description: "Testing fields, thumbnails, and images.",
     color: Utils.getRandomColor(),
     thumbnail: {
-      url: "https://www.gstatic.com/images/branding/googleg/1x/googleg_standard_color_128dp.png"
+      url: "https://www.gstatic.com/images/branding/googleg/1x/googleg_standard_color_128dp.png",
     },
     image: {
-      url: "https://www.gstatic.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png"
+      url: "https://www.gstatic.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png",
     },
     fields: [
       {
         name: "Field 1",
         value: "This is an inline field",
-        inline: true
+        inline: true,
       },
       {
         name: "Field 2",
         value: "This is another inline field",
-        inline: true
+        inline: true,
       },
       {
         name: "Full Width Field",
         value: "This field takes the full width of the embed.",
-        inline: false
-      }
+        inline: false,
+      },
     ],
     footer: {
       text: "Advanced Test Suite",
-      icon_url: "https://www.gstatic.com/images/branding/googleg/1x/googleg_standard_color_128dp.png"
-    }
+      icon_url:
+        "https://www.gstatic.com/images/branding/googleg/1x/googleg_standard_color_128dp.png",
+    },
   };
 
   runTestScenario("Advanced Embed Fields", {
     content: "Running advanced UI test:",
-    embeds: [embed]
+    embeds: [embed],
   });
 }
 

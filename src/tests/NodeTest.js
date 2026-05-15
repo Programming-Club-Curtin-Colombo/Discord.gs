@@ -22,9 +22,9 @@ const context = {
   UrlFetchApp: {
     fetch: (url, options) => {
       console.log(`\n[UrlFetchApp] Sending request to: ${url}`);
-      
+
       const isMock = url.includes("discord.com/api/webhooks/mock");
-      
+
       if (!isMock) {
         const fetch = require("sync-fetch");
         const res = fetch(url, {
@@ -36,7 +36,7 @@ const context = {
         });
 
         console.log(`[UrlFetchApp] Status: ${res.status}`);
-        
+
         return {
           getResponseCode: () => res.status,
           getContentText: () => res.text(),
@@ -98,7 +98,8 @@ try {
 // 4. Execution Tests
 console.log("=== Discord.gs Node.js Test Suite ===");
 
-const testWebhook = process.env.DISCORD_WEBHOOK_URL || "https://discord.com/api/webhooks/mock";
+const testWebhook =
+  process.env.DISCORD_WEBHOOK_URL || "https://discord.com/api/webhooks/mock";
 
 console.log("1. Testing: Api_send(string)");
 context.Api_send(testWebhook, "Test message from Node.js environment.");

@@ -143,7 +143,9 @@ const Services = (() => {
       PropertiesService.getScriptProperties().getProperty(propertyKey);
 
     if (!webhookUrl) {
-      throw new Error(`Webhook URL not found in script property: ${propertyKey}`);
+      throw new Error(
+        `Webhook URL not found in script property: ${propertyKey}`,
+      );
     }
 
     const messageOptions =
