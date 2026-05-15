@@ -10,7 +10,7 @@ function test_sendSimpleMessage() {
     return;
   }
 
-  send(WEBHOOK_URL, "Test message from Discord.gs");
+  Api_send(WEBHOOK_URL, "Test message from Discord.gs");
 }
 
 function test_sendEmbed() {
@@ -29,13 +29,13 @@ function test_sendEmbed() {
     },
   };
 
-  sendEmbed(WEBHOOK_URL, embed, { content: "Header text" });
+  Api_sendEmbed(WEBHOOK_URL, embed, { content: "Header text" });
 }
 
 function test_sendAnnouncement() {
   // Ensure the 'announcements' script property is set before running
   try {
-    sendAnnouncement("This is a test announcement.");
+    Api_sendAnnouncement("This is a test announcement.");
   } catch (e) {
     Logger.log("Error: " + e.message);
   }
@@ -44,7 +44,7 @@ function test_sendAnnouncement() {
 function test_sendModeratorMessage() {
   // Ensure the 'moderator-text' script property is set before running
   try {
-    sendModeratorMessage("This is a test moderator message.");
+    Api_sendModeratorMessage("This is a test moderator message.");
   } catch (e) {
     Logger.log("Error: " + e.message);
   }

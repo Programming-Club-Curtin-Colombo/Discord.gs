@@ -28,6 +28,15 @@ A professional, clean, and highly modular Discord Webhook library for Google App
    - Push your code: `npx clasp push`
 4. **Follow the instructions** in [CONTRIBUTING.md](./CONTRIBUTING.md).
 
+## Local Testing
+You can test the message formatting locally using Node.js without pushing to Google Apps Script.
+1. Create a `.env` file in the root directory (use `.env.example` as a template).
+2. Run the test:
+   ```bash
+   npm run test:local
+   ```
+This will log the exact payload being sent to Discord to your console.
+
 ## Project Structure
 - `.github/`: CI/CD workflows, issue templates, and security policy.
 - `appsscript.json`: Google Apps Script manifest file.

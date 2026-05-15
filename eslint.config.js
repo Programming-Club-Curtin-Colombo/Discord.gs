@@ -66,9 +66,9 @@ module.exports = [
         {
           // Allow standard GAS entry points OR library public functions (send*)
           selector:
-            "FunctionDeclaration[id.name=/^(?!doGet|doPost|onOpen|onEdit|send)/]",
+            "FunctionDeclaration[id.name=/^(?!doGet|doPost|onOpen|onEdit)/]",
           message:
-            "Code.gs must only contain entry points (doGet, doPost, etc.) or library public functions (send*).",
+            "Code.gs must only contain entry points (doGet, doPost, etc.).",
         },
       ],
     },

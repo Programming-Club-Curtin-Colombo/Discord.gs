@@ -1,61 +1,24 @@
 /**
- * Sends a message to Discord.
- *
- * @param {string} webhookUrl - The Discord webhook URL.
- * @param {string|Object} options - Either the message content string or an options object.
- * @returns {void}
+ * Discord.gs Entry Points
  */
-function send(webhookUrl, options) {
-  const messageOptions =
-    typeof options === "string" ? { content: options } : options;
 
-  Services_validateOptions(messageOptions);
-  return Services_sendDiscordMessage(webhookUrl, messageOptions);
+/**
+ * Handles GET requests (Optional)
+ */
+function doGet(e) {
+  // Add logic if needed
 }
 
 /**
- * Sends a simple text message to Discord.
- *
- * @param {string} webhookUrl - The Discord webhook URL.
- * @param {string} content - The message content.
- * @returns {void}
+ * Handles POST requests (Optional)
  */
-function sendMessage(webhookUrl, content) {
-  return send(webhookUrl, { content: content });
+function doPost(e) {
+  // Add logic if needed
 }
 
 /**
- * Sends an embed to Discord.
- *
- * @param {string} webhookUrl - The Discord webhook URL.
- * @param {Object} embed - The Discord embed object.
- * @param {Object} [options] - Additional message options (username, avatar_url, content).
- * @returns {void}
+ * Executes when the script is opened (e.g. from a Sheet)
  */
-function sendEmbed(webhookUrl, embed, options = {}) {
-  const messageOptions = {
-    ...options,
-    embeds: [embed],
-  };
-  return send(webhookUrl, messageOptions);
-}
-
-/**
- * Sends a message to the announcements channel.
- * Uses the 'announcements' script property for the webhook URL.
- *
- * @param {string|Object} options - Message content or options object.
- */
-function sendAnnouncement(options) {
-  return Services_sendByProperty(CONFIG.PROPERTY_KEYS.ANNOUNCEMENTS, options);
-}
-
-/**
- * Sends a message to the moderator channel.
- * Uses the 'moderator-text' script property for the webhook URL.
- *
- * @param {string|Object} options - Message content or options object.
- */
-function sendModeratorMessage(options) {
-  return Services_sendByProperty(CONFIG.PROPERTY_KEYS.MODERATOR, options);
+function onOpen(e) {
+  // Add logic if needed
 }

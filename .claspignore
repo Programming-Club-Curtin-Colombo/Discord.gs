@@ -25,3 +25,6 @@ SECURITY.md
 .prettierignore
 jsconfig.json
 .github/**
+src/tests/NodeTest.js
+.env
+.env.example

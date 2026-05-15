@@ -2,7 +2,7 @@
 
 ## Public Methods
 
-### `send(webhookUrl, options)`
+### `Api_send(webhookUrl, options)`
 The main entry point for sending a message.
 - **`webhookUrl`** (string): The Discord webhook URL.
 - **`options`** (string | Object): Either the message content as a string, or an options object.
@@ -11,23 +11,23 @@ The main entry point for sending a message.
   - `avatar_url`: (string) Optional avatar URL override.
   - `embeds`: (Array<Object>) Optional array of Discord embed objects.
 
-### `sendMessage(webhookUrl, content)`
+### `Api_sendMessage(webhookUrl, content)`
 Sends a simple text message.
 - **`webhookUrl`** (string): The Discord webhook URL.
 - **`content`** (string): The message text.
 
-### `sendEmbed(webhookUrl, embed, options)`
+### `Api_sendEmbed(webhookUrl, embed, options)`
 Sends a single embed.
 - **`webhookUrl`** (string): The Discord webhook URL.
 - **`embed`** (Object): Discord embed object.
 - **`options`** (Object): Additional message options (username, avatar_url, content).
 
-### `sendAnnouncement(options)`
+### `Api_sendAnnouncement(options)`
 Convenience method to send to the announcements channel.
 - Uses the `announcements` Script Property.
 - **`options`** (string | Object): Message content or options object.
 
-### `sendModeratorMessage(options)`
+### `Api_sendModeratorMessage(options)`
 Convenience method to send to the moderator channel.
 - Uses the `moderator-text` Script Property.
 - **`options`** (string | Object): Message content or options object.
@@ -38,7 +38,7 @@ Convenience method to send to the moderator channel.
 
 ### Simple Message
 ```javascript
-Discord.sendMessage(WEBHOOK_URL, "Hello from Google Apps Script!");
+Discord.Api_sendMessage(WEBHOOK_URL, "Hello from Google Apps Script!");
 ```
 
 ### Complex Message with Embed
@@ -53,7 +53,7 @@ const embed = {
   ]
 };
 
-Discord.send(WEBHOOK_URL, {
+Discord.Api_send(WEBHOOK_URL, {
   content: "Notification System",
   embeds: [embed]
 });

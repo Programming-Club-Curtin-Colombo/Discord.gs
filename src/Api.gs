@@ -61,3 +61,65 @@ function Api_postToDiscord(webhookUrl, payload) {
     `Failed to send message to Discord after ${CONFIG.MAX_RETRIES} attempts due to rate limiting.`,
   );
 }
+
+/**
+ * Sends a message to Discord.
+ *
+ * @param {string} webhookUrl - The Discord webhook URL.
+ * @param {string|Object} options - Either the message content string or an options object.
+ * @returns {void}
+ */
+function Api_send(webhookUrl, options) {
+  const messageOptions =
+    typeof options === "string" ? { content: options } : options;
+
+  Services_validateOptions(messageOptions);
+  return Services_sendDiscordMessage(webhookUrl, messageOptions);
+}
+
+/**
+ * Sends a simple text message to Discord.
+ *
+ * @param {string} webhookUrl - The Discord webhook URL.
+ * @param {string} content - The message content.
+ * @returns {void}
+ */
+function Api_sendMessage(webhookUrl, content) {
+  return Api_send(webhookUrl, { content: content });
+}
+
+/**
+ * Sends an embed to Discord.
+ *
+ * @param {string} webhookUrl - The Discord webhook URL.
+ * @param {Object} embed - The Discord embed object.
+ * @param {Object} [options] - Additional message options (username, avatar_url, content).
+ * @returns {void}
+ */
+function Api_sendEmbed(webhookUrl, embed, options = {}) {
+  const messageOptions = {
+    ...options,
+    embeds: [embed],
+  };
+  return Api_send(webhookUrl, messageOptions);
+}
+
+/**
+ * Sends a message to the announcements channel.
+ * Uses the 'announcements' script property for the webhook URL.
+ *
+ * @param {string|Object} options - Message content or options object.
+ */
+function Api_sendAnnouncement(options) {
+  return Services_sendByProperty(CONFIG.PROPERTY_KEYS.ANNOUNCEMENTS, options);
+}
+
+/**
+ * Sends a message to the moderator channel.
+ * Uses the 'moderator-text' script property for the webhook URL.
+ *
+ * @param {string|Object} options - Message content or options object.
+ */
+function Api_sendModeratorMessage(options) {
+  return Services_sendByProperty(CONFIG.PROPERTY_KEYS.MODERATOR, options);
+}
