@@ -15,7 +15,16 @@ const Utils = (() => {
     return parseInt(cleanHex, 16);
   }
 
+  /**
+   * Generates a random decimal color for Discord embeds.
+   * @returns {number}
+   */
+  function getRandomColor() {
+    return Math.floor(Math.random() * 16777215);
+  }
+
   return Object.freeze({
     hexToDecimal,
+    getRandomColor,
   });
 })();

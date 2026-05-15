@@ -71,7 +71,7 @@ function test_messageWithOneEmbed() {
   const embed = {
     title: "Single Embed Test",
     description: "This is a test with a message AND an embed.",
-    color: Utils.hexToDecimal("#3498db")
+    color: Utils.getRandomColor()
   };
 
   runTestScenario("Message with One Embed", {
@@ -87,7 +87,7 @@ function test_embedAlone() {
   const embed = {
     title: "Lonely Embed",
     description: "I have no top-level message content.",
-    color: Utils.hexToDecimal("#e67e22")
+    color: Utils.getRandomColor()
   };
 
   runTestScenario("Embed Alone", {
@@ -103,12 +103,12 @@ function test_twoEmbeds() {
     {
       title: "Embed One",
       description: "First part of the message.",
-      color: Utils.hexToDecimal("#2ecc71")
+      color: Utils.getRandomColor()
     },
     {
       title: "Embed Two",
       description: "Second part of the message.",
-      color: Utils.hexToDecimal("#9b59b6")
+      color: Utils.getRandomColor()
     }
   ];
 
@@ -126,7 +126,7 @@ function test_embedWithAttachment() {
   const embed = {
     title: "System Log Export",
     description: "Please find the attached log file below.",
-    color: Utils.hexToDecimal("#34495e")
+    color: Utils.getRandomColor()
   };
 
   runTestScenario("Embed with Attachment", {
@@ -142,7 +142,7 @@ function test_advancedEmbedFields() {
   const embed = {
     title: "Advanced Embed",
     description: "Testing fields, thumbnails, and images.",
-    color: Utils.hexToDecimal("#f1c40f"),
+    color: Utils.getRandomColor(),
     thumbnail: {
       url: "https://www.gstatic.com/images/branding/googleg/1x/googleg_standard_color_128dp.png"
     },
