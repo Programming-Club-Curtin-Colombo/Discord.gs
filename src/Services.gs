@@ -7,21 +7,25 @@ const Services = (() => {
    * Posts a payload to a Discord webhook with retry logic and rate limit handling.
    *
    * @param {string} webhookUrl - The Discord webhook URL.
-   * @param {Object} payload - The JSON payload to send.
+   * @param {Object} payload - The JSON payload or multipart payload.
+   * @param {boolean} [isMultipart=false] - Whether the payload is multipart.
    * @returns {GoogleAppsScript.URL_Fetch.HTTPResponse}
    * @private
    */
-  function postToDiscord(webhookUrl, payload) {
+  function postToDiscord(webhookUrl, payload, isMultipart = false) {
     if (!webhookUrl) {
       throw new Error("Discord webhook URL is required.");
     }
 
     const options = {
       method: "post",
-      contentType: "application/json",
-      payload: JSON.stringify(payload),
       muteHttpExceptions: true,
+      payload: isMultipart ? payload : JSON.stringify(payload),
     };
+
+    if (!isMultipart) {
+      options.contentType = "application/json";
+    }
 
     for (let attempt = 0; attempt < CONFIG.MAX_RETRIES; attempt++) {
       const response = UrlFetchApp.fetch(webhookUrl, options);
@@ -75,18 +79,41 @@ const Services = (() => {
    * Sends a message to Discord.
    *
    * @param {string} webhookUrl - The Discord webhook URL.
-   * @param {Object} messageOptions - The message options (content, embeds, username, avatar_url).
+   * @param {Object} messageOptions - The message options (content, embeds, username, avatar_url, files).
    * @returns {void}
    */
   function sendDiscordMessage(webhookUrl, messageOptions) {
-    const payload = {
+    const jsonData = {
       username: messageOptions.username || CONFIG.DEFAULT_USERNAME,
       avatar_url: messageOptions.avatar_url || CONFIG.DEFAULT_AVATAR_URL,
       content: messageOptions.content || "",
       embeds: messageOptions.embeds || [],
     };
 
-    return postToDiscord(webhookUrl, payload);
+    // Handle files (attachments)
+    if (messageOptions.files && messageOptions.files.length > 0) {
+      const payload = {
+        payload_json: JSON.stringify(jsonData),
+      };
+
+      messageOptions.files.forEach((file, index) => {
+        // file can be a Blob, or an object { name, content, type }
+        if (file.getBlob) {
+          payload[`file[${index}]`] = file.getBlob();
+        } else if (typeof file === "string" || file.slice) {
+          // Assume it's a blob-like thing or string
+          payload[`file[${index}]`] = file;
+        } else {
+          // Object structure { content, name, type }
+          const blob = Utilities.newBlob(file.content, file.type, file.name);
+          payload[`file[${index}]`] = blob;
+        }
+      });
+
+      return postToDiscord(webhookUrl, payload, true);
+    }
+
+    return postToDiscord(webhookUrl, jsonData, false);
   }
 
   /**
